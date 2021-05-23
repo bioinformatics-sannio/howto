@@ -72,10 +72,10 @@ mkdir rstudioshare
 podman unshare chown 1000:1000 -R $HOME/rstudioshare
 ```
 
-Launch in a tmux console an rstudio podman container (See how to manage tmux session in the previous section). Choose the appropriate port number if not available and a password.
+Launchg the container in detached mode. Choose the appropriate port number if not available and a password.
  
 ```console
-podman run --rm -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
+podman run -dt -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
 ```
  
 In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and loging with rstudio/<apassord>.
@@ -89,6 +89,8 @@ Some useful podman commands to manage containers.
 
 ```console
 podman ps -a.                             # list running containers
+podman stop <Container ID>                # stops the execution of a container
+podman rm <Container ID>                  # removed a stopped container
 podman exec -it <Container ID> /bin/bash. # connect with shell to a running container. <Container ID> can be obtained with podman ps -a
 podman commit <Container ID>.             # commit changes in a running container (e.g. installed packages).
 ```
