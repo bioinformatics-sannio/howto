@@ -85,4 +85,10 @@ The port should be the same chose for the container. Information about <userid> 
 ssh -N -f -L localhost:8787:localhost:8787 <userid>@<ip> -p <sshport>
 ```
  
- 
+Some useful podman commands to manage containers
+
+```console
+podman ps -a.                             # list running containers
+podman exec -it <Container ID> /bin/bash. # connect with shell to a running container. <Container ID> can be obtained with podman ps -a
+podman commit <Container ID>.             # commit changes in a running container (eg. installed packages).
+```
