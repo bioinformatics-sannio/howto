@@ -78,7 +78,7 @@ Launch in a tmux console an rstudio podman container (See how to manage tmux ses
 podman run --rm -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z -e PASSWORD=<apassword> rocker/rstudio
 ```
  
-In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8899 and loging with rstudio/<apassord>.
+In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and loging with rstudio/<apassord>.
 The port should be the same chose for the container. Information about <userid> <ip> and <sshport> are the same you adopt for ssh login.
 
 ```console
