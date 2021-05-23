@@ -75,7 +75,7 @@ podman unshare chown 1000:1000 -R $HOME/rstudioshare
 Launch in a tmux console an rstudio podman container (See how to manage tmux session in the previous section). Choose the appropriate port number if not available and a password.
  
 ```console
-podman run --rm -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z -e PASSWORD=<apassword> rocker/rstudio
+podman run --rm -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
 ```
  
 In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and loging with rstudio/<apassord>.
