@@ -92,7 +92,7 @@ The port must be the same used to run the container. Information about <userid> 
 ssh -N -f -L localhost:8787:localhost:8787 <userid>@<ip> -p <sshport>
 ```
  
-Some useful podman commands to manage containers. Contained ID can be changed with the container name given with the --name parameter.
+Some useful podman commands to manage containers. <Contained ID> can be the container name defined with the --name parameter.
 
 ```console
 podman ps -a.                             # list running containers
