@@ -79,7 +79,7 @@ From your local account the shared volume is readonly while from the container i
 podman unshare chown root.root -R $HOME/rstudioshare
 ```
 
-Run the container in detached mode. Choose the appropriate port number if not available and a password.
+Run the container in detached mode. Choose the appropriate port number (e.g. 8787) if not available and a password.
  
 ```console
 podman run -dt -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
@@ -92,7 +92,7 @@ The port must be the same used to run the container. Information about <userid> 
 ssh -N -f -L localhost:8787:localhost:8787 <userid>@<ip> -p <sshport>
 ```
  
-Some useful podman commands to manage containers.
+Some useful podman commands to manage containers. Contained ID can be changed with the container name given with the --name parameter.
 
 ```console
 podman ps -a.                             # list running containers
