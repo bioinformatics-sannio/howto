@@ -2,7 +2,7 @@
 
 - Superdome server (224 CPU cores Intel(R) Xeon(R) Platinum 8280 CPU @ 2.70GHz, 1.5 TB RAM, 1 GPU NVIDIA Tesla V100)
 
-In this document some technical information to correctly adopt the computational infrastrucutre.
+In this document some technical information to access the computational infrastrucutre.
 
 ## Setup miniconda local notebook with python, pytorch, R
 
@@ -64,22 +64,30 @@ The port should be the same chose for the notebook server. Information about <us
 ssh -N -f -L localhost:8899:localhost:8899 <userid>@<ip> -p <sshport>
 ```
 
-## Setup a local podman container with R and rstudio server
+## Setup a local rootless podman container with R and rstudio server
  
-Create in your local home a directory shared with the container and set the appropriate podman uid
+If you want to share a volume (local dir) with the container then create in your local home a directory and set the appropriate permissions with podman unshare. 1000:1000 are the uid and gid of container rstudio user.
+
 ```console
 mkdir rstudioshare
 podman unshare chown 1000:1000 -R $HOME/rstudioshare
 ```
 
-Launchg the container in detached mode. Choose the appropriate port number if not available and a password.
+From your local account the shared volume is readonly while from container it is read and write. You can gain the original local user permissions with podman unshare.
+ 
+```console
+podman unshare chown root.root -R $HOME/rstudioshare
+```
+
+ 
+Launch the container in detached mode. Choose the appropriate port number if not available and a password.
  
 ```console
 podman run -dt -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
 ```
  
-In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and loging with rstudio/<apassord>.
-The port should be the same chose for the container. Information about <userid> <ip> and <sshport> are the same you adopt for ssh login.
+In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and login with rstudio/<apassord>.
+The port must be the same chose for the container. Information about <userid> <ip> and <sshport> are the same you adopt for ssh login.
 
 ```console
 ssh -N -f -L localhost:8787:localhost:8787 <userid>@<ip> -p <sshport>
