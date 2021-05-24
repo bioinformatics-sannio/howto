@@ -98,6 +98,6 @@ Some useful podman commands to manage containers. `Container ID` can be the cont
 podman ps -a.                             # list running containers
 podman stop <Container ID>                # stops the execution of a container
 podman rm <Container ID>                  # remove a stopped container
-podman exec -it <Container ID> /bin/bash. # connect with shell to a running container. <Container ID> can be obtained with podman ps -a
+podman exec -it <Container ID> /bin/bash. # connect to a running container shell. <Container ID> can be obtained with podman ps -a
 podman commit <Container ID>.             # commit changes in a running container (e.g. installed packages).
 ```
