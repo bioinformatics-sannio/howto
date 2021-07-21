@@ -43,7 +43,7 @@ Lauch the notebook server in a tmux session.
 
 ```console
 tmux new -s "Jupiter"
-jupyter notebook --no-browser --port=8899
+jupyter notebook --no-browser --port=8899 --NotebookApp.disable_check_xsrf=True
 ```
 
 If the port number (e.g. 8899) is not available choose a different one. The server outputs the link to connect with a token. Copy in the clipboard and detach the session with `Ctrl-b d`.
