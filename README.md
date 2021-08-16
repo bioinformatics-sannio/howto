@@ -9,29 +9,43 @@ In this document some technical information to access the computational infrastr
 Get the last version of miniconda at https://repo.anaconda.com and install it in your local home.
 
 ```console
-wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh
-bash Miniconda3-py39_4.9.2-Linux-x86_64.sh 
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh 
 ```
 
 Update Conda
 
 ```console
-conda update -n base -c defaults conda
+conda update -c conda-forge conda
 ```
 
 Install pytorch with cuda enabled and other packages such as `biopython`
 
 ```console
-conda install pytorch torchvision -c pytorch
-conda install -c conda-forge biopython
+conda install -c conda-forge pytorch torchvision torchsummary
+conda install -c conda-forge biopython matplotlib scikit-learn pandas
+pip install pkbar torchsummary
 ```
 
 Install R and R essentials. Set the appropriate version if needed.
 
 ```console
-conda install -c conda-forge r-base=4.0.3
-conda install -c conda-forge r-essentials
+conda install -c conda-forge r-base=4.1
+conda install -c conda-forge r-essentials boost
 ```
+
+Install Bioconductors and other useful R packages.
+
+```console
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("DECIPHER")
+
+install.packages("kit")
+install.packages("usedist")
+```
+
 
 Install Jupiter notebook
 
@@ -43,7 +57,7 @@ Lauch the notebook server in a tmux session.
 
 ```console
 tmux new -s "Jupiter"
-jupyter notebook --no-browser --port=8899 --NotebookApp.disable_check_xsrf=True
+jupyter notebook --no-browser --port=8899
 ```
 
 If the port number (e.g. 8899) is not available choose a different one. The server outputs the link to connect with a token. Copy in the clipboard and detach the session with `Ctrl-b d`.
