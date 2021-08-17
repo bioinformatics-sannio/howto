@@ -23,7 +23,7 @@ Install pytorch with cuda enabled and other packages such as `biopython`
 
 ```console
 conda install -c conda-forge pytorch torchvision torchsummary
-conda install -c conda-forge biopython matplotlib scikit-learn pandas
+conda install -c conda-forge biopython matplotlib scikit-learn pandas seaborn
 pip install pkbar torchsummary
 ```
 
