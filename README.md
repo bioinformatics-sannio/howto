@@ -44,6 +44,7 @@ BiocManager::install("DECIPHER")
 
 install.packages("kit")
 install.packages("usedist")
+install.packages("fastcluster")
 ```
 
 
