@@ -100,7 +100,7 @@ Run the container in detached mode. Choose the appropriate port number (e.g. 878
 podman run -dt -p 8787:8787 -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
 ```
  
-In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and login with rstudio/<apassord>.
+In your local shell (client side) set an ssh tunnel and connect to rstudio server with http://localhost:8787 and login with rstudio userid.
 The port must be the same used to run the container. Information about <userid> <ip> and <sshport> are the same you adopt for ssh login.
 
 ```console
