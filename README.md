@@ -22,8 +22,8 @@ conda update -c conda-forge conda
 Install pytorch with cuda enabled and other packages such as `biopython`
 
 ```console
-conda install -c conda-forge pytorch torchvision torchsummary
-conda install -c conda-forge biopython matplotlib scikit-learn pandas seaborn
+conda install -c pytorch pytorch torchvision 
+conda install -c conda-forge biopython matplotlib scikit-learn pandas seaborn 
 pip install pkbar torchsummary
 ```
 
@@ -34,7 +34,7 @@ conda install -c conda-forge r-base=4.1
 conda install -c conda-forge r-essentials boost
 ```
 
-Install Bioconductors and other useful R packages.
+In R shell install Bioconductors and other useful R packages.
 
 ```console
 if (!requireNamespace("BiocManager", quietly = TRUE))
