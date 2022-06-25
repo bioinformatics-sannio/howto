@@ -22,9 +22,9 @@ conda update -c conda-forge conda
 Install pytorch with cuda enabled and other packages such as `biopython`
 
 ```console
-conda install -c pytorch pytorch torchvision 
-conda install -c conda-forge biopython matplotlib scikit-learn pandas seaborn 
-pip install pkbar torchsummary
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+conda install pyg -c pyg
+pip install pkbar
 ```
 
 Install R and R essentials. Set the appropriate version if needed.
