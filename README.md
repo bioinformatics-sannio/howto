@@ -24,7 +24,7 @@ Install pytorch with cuda enabled and other packages such as `biopython`
 ```console
 conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 conda install pyg -c pyg
-pip install pkbar
+pip install pkbar biopython ipywidgets matplotlib
 ```
 
 Install R and R essentials. Set the appropriate version if needed.
