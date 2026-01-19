@@ -81,7 +81,7 @@ ssh -N -f -L localhost:8899:localhost:8899 <userid>@<ip> -p <sshport>
 
 ## Setup a local rootless podman container with R and rstudio server
  
-If you want to share a volume (local dir) with the container create in your local home a directory (e.g. rstudioshare) and set the appropriate permissions with `podman unshare` command (1000:1000 are the uid and gid of container's rstudio user).
+If you want to share a volume (not needed if you use podman cp to copy from and to container) with the container create in your local home a directory (e.g. rstudioshare) and set the appropriate permissions with `podman unshare` command (1000:1000 are the uid and gid of container's rstudio user).
 
 ```console
 mkdir rstudioshare
@@ -99,6 +99,8 @@ Run the container in detached mode. Map the container default rstudio port (8787
 ```console
 podman run -dt -p 8787:<port> -v $(pwd)/rstudioshare:/home/rstudio/hosthome:Z --name rstudio -e PASSWORD=<apassword> rocker/rstudio
 ```
+
+See [Rocker project]<https://rocker-project.org> to get more rstudio related containers.
  
 In your local shell (client side) set an ssh tunnel, connect to rstudio server with http://localhost:<port>, and login with `rstudio` userid and the chosen password.
 The port must be the same used to run the container. Information about <userid> <ip> and <sshport> are the same you adopt for ssh login.
@@ -107,12 +109,14 @@ The port must be the same used to run the container. Information about <userid> 
 ssh -N -f -L localhost:<port>:localhost:<port> <userid>@<ip> -p <sshport>
 ```
 
-Some useful podman commands to manage containers. `Container ID` can be the container name defined with the --name parameter.
+Useful podman commands to manage containers. `Container ID` can be the container name defined with the --name parameter and obtaine with `podman ps -a`.
 
 ```console
 podman ps -a.                             # list running containers
 podman stop <Container ID>                # stops the execution of a container
+podman restart <Container ID>             # restart or restore a previously stopped container
 podman rm <Container ID>                  # remove a stopped container
-podman exec -it <Container ID> /bin/bash. # connect to a running container shell. <Container ID> can be obtained with podman ps -a
-podman commit <Container ID>.             # commit changes in a running container (e.g. installed packages).
+podman exec -it <Container ID> /bin/bash  # connect to a running container shell as root
+podman commit <Container ID>.             # commit changes in a running container (e.g. installed packages)
+podman cp path/from path/to               # to copy files from container to host or viceversa. Container path must start with <Container ID>: (e.g. podman cp rstudio-d01:/home/stud002/pippo .)
 ```
